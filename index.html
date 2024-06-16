@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jubaier Kabir</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --primary-color-light: #ffffff;
+    --secondary-color-light: #333333;
+    --highlight-color-light: #168291; /* Tomato color */
+    --primary-color-dark: #181818;
+    --secondary-color-dark: #ffffff;
+    --highlight-color-dark: #1E90FF; /* Dodger blue */
+    --card-bg-color-light: #f9f9f9;
+    --card-bg-color-dark: #2e2e2e;
+    --link-color: #007bff;
+    --header-bg-color: #333333;
+    --sidebar-bg-color: #1e1e1e;
+    --sidebar-text-color: #f0f0f0;
+    --background-image-light: url('light.jpg'); /* Add your background image */
+    --background-image-dark: url('dark.jpg'); /* Add your background image */
+    --accent-color: #ff4081; /* Pink accent color for fancy look */
+}
+
+/* Light Mode */
+body {
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+    --highlight-color: var(--highlight-color-light);
+    --card-bg-color: var(--card-bg-color-light);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    background-image: var(--background-image-light);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode {
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --highlight-color: var(--highlight-color-dark);
+    --card-bg-color: var(--card-bg-color-dark);
+    background-color: var(--primary-color);
+    background-image: var(--background-image-dark);
+    color: var(--secondary-color);
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--header-bg-color);
+    color: var(--secondary-color-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header input[type="text"] {
+    width: 50%;
+    padding: 0.5rem;
+    margin: 0 1rem;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .menu-toggle,
+.header .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--secondary-color-light);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.header .menu-toggle i,
+.header .theme-toggle i {
+    font-size: 2.5rem;
+}
+
+.header .menu-toggle {
+    background-color: rgba(240, 232, 232, 0.5);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.header .menu-toggle:hover {
+    transform: rotate(90deg);
+    background-color: rgba(5, 4, 4, 0.7);
+}
+
+.header .theme-toggle {
+    background-color: rgba(240, 234, 234, 0.5);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.header .theme-toggle:hover {
+    transform: rotate(360deg);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100%;
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--sidebar-text-color);
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 1rem 0;
+}
+
+.sidebar nav ul li a {
+    color: var(--sidebar-text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+    color: var(--highlight-color);
+}
+
+.sidebar nav ul li a i {
+    margin-right: 0.5rem;
+}
+
+/* Main Content */
+.main-content {
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem 0;
+    background-image: url('light1.jpg');
+    color: var(--primary-color);
+    animation: fadeIn 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.3s ease;
+}
+
+.dark-mode .hero {
+    background-image: url('dark1.jpg');
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    font-family: 'Times New Roman', serif; /* Change font */
+}
+
+.hero .btn {
+    background-color: var(--primary-color);
+    color: var(--highlight-color);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+}
+
+.section {
+    padding: 2rem 0;
+}
+
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: left; /* Align section titles to the left */
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    animation: slideIn 1s ease-in-out;
+}
+
+.about-image {
+    flex: 1 1 200px;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.05);
+}
+
+.interests-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.interests-list li {
+    background-color: var(--card-bg-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: var(--secondary-color);
+    transition: background-color 0.3s ease;
+}
+
+.interests-list li:hover {
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+}
+
+.interests-list li i {
+    margin-right: 0.5rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #000; /* Black background for the footer */
+    color: var(--secondary-color-light);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.footer p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem; /* Increased font size */
+    font-weight: bold; /* Made text bold */
+}
+
+.social-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.social-icons li {
+    margin: 0 0.5rem;
+}
+
+.social-icons li a {
+    color: var(--highlight-color); /* Changed color to highlight color */
+    font-size: 2.5rem; /* Increased font size */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+    color: var(--accent-color);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.back-to-top.show {
+    display: block;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    background-color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <button class="menu-toggle"><i class="fas fa-hamburger"></i></button>
+        <input type="text" placeholder="Search...">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+    
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Menu</h2>
+            <button class="close-sidebar"><i class="fas fa-times"></i></button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> About Me</a></li>
+                <li><a href="#"><i class="fas fa-code"></i> Interested In</a></li>
+                <li><a href="#"><i class="fas fa-blog"></i> Articles and Blogs</a></li>
+                <li><a href="#"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <section class="hero">
+            <h2>Hi, I'm Jubaier Kabir</h2>
+            <p class="hero-subtitle">Student | Chess Player | Coder</p>
+            <a href="#contact" class="btn">Explore my work</a>
+        </section>
+
+        <section class="about section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="ehh.jpg" alt="About Image">
+                    </div>
+                    <div>
+                        <h2>About Me</h2>
+                        <p>Hi, I'm Jubaier.Welcome to my personal website. Currently, I'm a student of *th grade from Mymensingh, Bangladesh. I created this website to connect to the people of this world and share my interests, journeys, opinions etc...I hope you enjoy.
+                </div>
+            </div>
+        </section>
+
+        <section class="interests section">
+            <div class="container">
+                <h2>Interested In</h2>
+                <p>I have a wide range of interests that fuel my curiosity and creativity. I always enjoy learning new stuffs. Here are a few areas I'm particularly passionate about:</p>
+                <ul class="interests-list">
+                    <li><i class="fas fa-code"></i> Coding - Currenty, learning...</li>
+                    <li><i class="fas fa-chess"></i> Chess - A regular intermediate Player with a peak rating of 1472.</li>
+                    <li><i class="fas fa-book"></i> History - Understanding the past to inform the future.</li>
+                    <li><i class="fas fa-brain"></i> Problem Solving - Not much good at it though.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="projects section">
+            <div class="container">
+                <h2>Projects</h2>
+                <p>I don't yet have any projects.</p>
+            </div>
+        </section>
+
+        <section class="articles section">
+            <div class="container">
+                <h2>Articles and Blogs</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <img src="path_to_article_image.jpg" alt="Article Image">
+                        <div class="card-content">
+                            <h3>I havn't worte anything yet.</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- More cards -->
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <p>You can reach out to me via email at: <span class="email-link"><a href="mailto:jubaierkabir7@gmail.com">jubaierkabir7@gmail.com</a></span></p>
+                <p>You can also give me some feedback by clicking <a href="https://docs.google.com/forms/d/e/1FAIpQLSfovlecgrmG2gOAg4qg9Yzgko33ClccbV3VUpKsi_0qOtdaMQ/viewform?usp=sf_link" target="_blank">here</a>.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>Connect with me on my social media:</p>
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/profile.php?id=100067294813938&mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/freg_07?igsh=NTc4MTIwNjQ2YQ==" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/jubaier03/jubaier03.git" target="_blank"><i class="fab fa-github"></i></a></li>
+            <li><a href="http://www.linkedin.com/in/jubaier-kabir-8baa132bb" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+
+    <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // JavaScript code for toggling dark mode and hamburger menu
+
+document.addEventListener("DOMContentLoaded", function() {
+    const themeToggle = document.querySelector(".theme-toggle");
+    const body = document.body;
+
+    themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const icon = themeToggle.querySelector("i");
+        if (body.classList.contains("dark-mode")) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        } else {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        }
+    });
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+    const closeSidebar = document.querySelector(".close-sidebar");
+
+    menuToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+
+    closeSidebar.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+    });
+
+    window.addEventListener("scroll", () => {
+        const backToTop = document.querySelector(".back-to-top");
+        if (window.scrollY > 300) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    const backToTopButton = document.querySelector(".back-to-top");
+    backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+});
+
+    </script>
+</body>
+</html>
